@@ -23,7 +23,7 @@
     <configuration>
         <suiteXmlFiles>
             <suiteXmlFile>
-              testng.xml
+              src\test\resourses\testng.xml
             </suiteXmlFile>
         </suiteXmlFiles>
     </configuration>
