@@ -1,45 +1,27 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-
-name: API Test Automation
+name: Rest Assured Framework
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ main, master ]
-  # schedule:
-  #   # Runs twice: daily at 2 AM UTC and Monday/Thursday at 2 PM UTC
-  #   - cron: '0 2 * * *'     # Daily at 2 AM UTC
-  #   - cron: '0 14 * * 1,4'  # Monday and Thursday at 2 PM UTC
-  workflow_dispatch:  # Allows manual trigger from GitHub UI
-  
+    branches: [ "master" ]
+
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      checks: write
-      issues: write
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
     - name: Set up JDK 11
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         java-version: '11'
         distribution: 'temurin'
-        cache: 'maven'
-    
-    
-    - name: Run API Tests
+        cache: maven
+
+    - name: Execute Tests
       run: mvn clean test -Dsuite=suite -X
     
     # - name: Upload test results
